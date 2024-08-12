@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$alerts: 'success', 'info', 'warning', 'danger', 'message';
+
+@each $alert in $alerts {
+  .alert-#{$alert} {
+    @apply alert;
+
+    $color: 'colors.#{$alert}.400';
+    border-color: theme($color);
+    $color: 'colors.#{$alert}.50';
+    background-color: theme($color);
+    $color: 'colors.#{$alert}.700';
+    color: theme($color);
+  }
+}
+
+.toasts {
+  @each $alert in $alerts {
+    .alert-#{$alert} {
+      .clear-btn {
+        &:hover {
+          $color: 'colors.#{$alert}.400';
+          color: theme($color);
+        }
+      }
+    }
+  }
+}
